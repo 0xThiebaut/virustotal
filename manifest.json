@@ -1,23 +1,33 @@
 {
   "manifest_version": 2,
   "name": "VirusTotal Garbage Collector",
-  "version": "1.0",
-
+  "version": "1.1",
   "developer": {
     "name": "0xThiebaut",
     "url": "https://thiebaut.dev/"
   },
-
   "description": "Garbage-collects wasted VirusTotal searches by directly redirecting known formats (SHA256, IPv4, Domain).",
   "icons": {
     "48": "virustotal.svg"
   },
-
   "permissions": [
-    "webRequest", "webRequestBlocking", "*://www.virustotal.com/gui/search/*"
+    "webRequest",
+    "webRequestBlocking",
+    "*://www.virustotal.com/gui/search/*"
   ],
-
   "background": {
-    "scripts": ["virustotal.js"]
-  }
+    "scripts": [
+      "domain.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.virustotal.com/gui/*"
+      ],
+      "js": [
+        "ui.js"
+      ]
+    }
+  ]
 }
